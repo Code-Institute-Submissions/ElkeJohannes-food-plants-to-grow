@@ -54,7 +54,7 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 ## &rarr; **User Experience**
 
 ### **<ins>User stories</ins>**
-![User stories](food_plants_to_grow/media/readme_files/user_stories.png)
+![User stories](media/readme_files/user_stories.png)
 
 
 ### **<ins>Strategy</ins>**
@@ -67,7 +67,12 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 
 
 ### **<ins>Skeleton</ins>**
-
+The following wireframes were made using Balsamiq to give a rough idea of the project.
+- [Home page](media/readme_files/wireframe_home.png)
+- [Plant overview page](media/readme_files/wireframe_plants.png)
+- [Suggestions page](media/readme_files/wireframe_suggestions.png)
+- [Login page](media/readme_files/wireframe_login.png)
+- [Contact page](media/readme_files/wireframe_contact.png)
 
 
 ### **<ins>Surface</ins>**
@@ -94,7 +99,7 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 
 | <div align="center">HTML5</div> | <div align="center">CSS3</div> | <div align="center">Javascript</div> | <div align="center">Python</div> |
 |-|-|-|-|
-| ![html5](food_plants_to_grow/media/readme_files/html5.png) | ![css3](food_plants_to_grow/media/readme_files/css3.png) | ![javascript](food_plants_to_grow/media/readme_files/javascript.png) | ![python](food_plants_to_grow/media/readme_files/python.png) |
+| ![html5](media/readme_files/html5.png) | ![css3](media/readme_files/css3.png) | ![javascript](media/readme_files/javascript.png) | ![python](media/readme_files/python.png) |
 
 
 ### **<ins>Libraries, Frameworks and programs</ins>**
