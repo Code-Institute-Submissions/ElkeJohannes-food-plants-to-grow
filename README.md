@@ -142,3 +142,5 @@ The following wireframes were made using Balsamiq to give a rough idea of the pr
 
 
 ### **<ins>Acknowledgements</ins>** 
+- Shop template taken from [Startbootstrap.com](https://startbootstrap.com/template/shop-homepage)
+- Color sheme from [Colorhunt.co](https://colorhunt.co/palette/125c133e7c17f4a442e8e1d9)
