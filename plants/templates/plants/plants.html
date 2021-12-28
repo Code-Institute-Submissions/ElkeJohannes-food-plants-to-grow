@@ -23,9 +23,9 @@
                         <a class="dropdown-toggle" id="categoryDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
                         <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                            <!-- {% for plant in plants %}
-                                <li><a class="dropdown-item" href="#">Large trees</a></li>
-                            {% endfor %} -->
+                            {% for category in categories %}
+                                <li><a class="dropdown-item" href="#">{{ category.friendly_name }}</a></li>
+                            {% endfor %}
                         </ul>
                     </li>
                 </div>
@@ -43,7 +43,7 @@
                 <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5">                    
                     <div class="card h-100">
                         <!-- Plant image, fill with placeholder if not present -->
-                        {% if plant.Image_url %}
+                        {% if plant.image_url %}
                             <img class="card-img-top" src={{ plant.Image_url }} 
                                 alt="Image of {{ plant.Common_name }}" />
                         {% else %}
@@ -54,9 +54,9 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 
-                                <h5 class="fw-bolder">{{ plant.Common_name }}</h5>
-                                <h6 class="plant-card-subheader">{{ plant.Botanical_name }}</h6>
-                                <h6>-- {{ plant.Layer }} --</h6>
+                                <h5 class="fw-bolder">{{ plant.common_name }}</h5>
+                                <h6 class="plant-card-subheader">{{ plant.botanical_name }}</h6>
+                                <h6>-- {{ plant.category.friendly_name }} --</h6>
                             </div>
                         </div>
                     </div>
