@@ -2,68 +2,70 @@
 {% load static %}
 
 {% block customHead %}
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'plants/css/plants.css' %}">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'plants/css/plants.css' %}">
 {% endblock %}
 
 {% block bodyMain %}
-    
-    <section class="row mt-4 justify-content-center">
-        <div class="col-10">
-            <div class="row">
-                <!-- Search -->
-                <div class="col-3">
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                      </form>
-                </div>
-                <!-- Categories -->
-                <div class="col text-end">
-                    <li class="dropdown categoryDropdown">
-                        <a class="dropdown-toggle" id="categoryDropdown" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
-                        <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                            {% for category in categories %}
-                                <li><a class="dropdown-item" href="#">{{ category.friendly_name }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                </div>
+
+<section class="row mt-4 justify-content-center">
+    <div class="col-10">
+        <div class="row">
+            <!-- Search -->
+            <div class="col-3">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <input type="search" class="form-control form-control-dark" placeholder="Search..."
+                        aria-label="Search">
+                </form>
+            </div>
+            <!-- Categories -->
+            <div class="col text-end">
+                <li class="dropdown categoryDropdown">
+                    <a class="dropdown-toggle" id="categoryDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">Categories</a>
+                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                        <li><a class="dropdown-item" href="{% url 'all_plants' %}">All</a></li>
+                        {% for category in categories %}
+                        <li><a class="dropdown-item"
+                                href="{% url 'all_plants' %}?category={{ category.name }}">
+                                {{ category.friendly_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    <!-- Wrapper for the gallery -->
-    <section class="mt-4">
-        <div class="container ">
-            <!-- <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-l-3 row-cols-xl-4 justify-content-center"> -->
-            <div class="row justify-content-center">
-                {% for plant in plants %}
-                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5">                    
-                    <div class="card h-100">
-                        <!-- Plant image, fill with placeholder if not present -->
-                        {% if plant.image_url %}
-                            <img class="card-img-top" src={{ plant.Image_url }} 
-                                alt="Image of {{ plant.Common_name }}" />
-                        {% else %}
-                            <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png"
-                                alt="No image uploaded" />
-                        {% endif %}
-                        <!-- Card text -->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                
-                                <h5 class="fw-bolder">{{ plant.common_name }}</h5>
-                                <h6 class="plant-card-subheader">{{ plant.botanical_name }}</h6>
-                                <h6>-- {{ plant.category.friendly_name }} --</h6>
-                            </div>
+<!-- Wrapper for the gallery -->
+<section class="mt-4">
+    <div class="container ">
+        <!-- <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-l-3 row-cols-xl-4 justify-content-center"> -->
+        <div class="row justify-content-center">
+            {% for plant in plants %}
+            <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5">
+                <div class="card h-100">
+                    <!-- Plant image, fill with placeholder if not present -->
+                    {% if plant.image_url %}
+                    <img class="card-img-top" src={{ plant.Image_url }} alt="Image of {{ plant.Common_name }}" />
+                    {% else %}
+                    <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
+                    {% endif %}
+                    <!-- Card text -->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+
+                            <h5 class="fw-bolder">{{ plant.common_name }}</h5>
+                            <h6 class="plant-card-subheader">{{ plant.botanical_name }}</h6>
+                            <h6>-- {{ plant.category.friendly_name }} --</h6>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-    </section>
+    </div>
+</section>
 
 {% endblock %}
