@@ -9,10 +9,10 @@ class Plant(models.Model):
     Price = models.DecimalField(
         max_digits=6, decimal_places=2, null=False, blank=False)
     Layer = models.CharField(max_length=100, choices=[
-        ('Large tree', 'Large tree'), ('Medium tree', 'Medium tree'), 
-        ('Small tree', 'Small tree'), ('Shrub', 'Shrub'),
-        ('Ground cover', 'Ground cover'), ('Climber', 'Climber'),
-        ('Root', 'Root')], null=False, blank=False)
+        ('Large trees', 'Large trees'), ('Medium trees', 'Medium trees'), 
+        ('Small trees', 'Small trees'), ('Shrubs', 'Shrubs'),
+        ('Ground covers', 'Ground covers'), ('Climbers', 'Climbers'),
+        ('Roots', 'Roots')], null=False, blank=False)
     Image_url = models.URLField(max_length=1024, null=True, blank=True)
     Image = models.ImageField(null=True, blank=True)
 
