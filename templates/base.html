@@ -32,20 +32,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Plants</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{% url 'all_plants' %}">All plants</a></li>
-                                <li><a class="dropdown-item" href="#">Large trees</a></li>
-                                <li><a class="dropdown-item" href="#">Medium trees</a></li>
-                                <li><a class="dropdown-item" href="#">Small trees</a></li>
-                                <li><a class="dropdown-item" href="#">Shrubs</a></li>
-                                <li><a class="dropdown-item" href="#">Ground covers</a></li>
-                                <li><a class="dropdown-item" href="#">Climbers</a></li>
-                                <li><a class="dropdown-item" href="#">Roots</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'all_plants' %}">Plants</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Suggestions</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Login</a></li>
@@ -63,7 +50,7 @@
     </header>
     
     <div class="row d-flex justify-content-center">
-        <div class="col-10 text-center">
+        <div class="col-9">
             {% block bodyMain %}
             {% endblock %}
         </div>
