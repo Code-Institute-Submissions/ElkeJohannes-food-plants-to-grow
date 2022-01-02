@@ -13,11 +13,21 @@
         <div class="row">
             <!-- Search -->
             <div class="col-3">
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..."
-                        aria-label="Search">
+                <form method="GET" action="{% url 'all_plants' %}" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="query"
+                                placeholder="Search...">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
+
             <!-- Categories -->
             <div class="col text-end">
                 <li class="dropdown categoryDropdown">
@@ -26,8 +36,7 @@
                     <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                         <li><a class="dropdown-item" href="{% url 'all_plants' %}">All</a></li>
                         {% for category in categories %}
-                        <li><a class="dropdown-item"
-                                href="{% url 'all_plants' %}?category={{ category.name }}">
+                        <li><a class="dropdown-item" href="{% url 'all_plants' %}?category={{ category.name }}">
                                 {{ category.friendly_name }}</a></li>
                         {% endfor %}
                     </ul>
@@ -48,7 +57,7 @@
                 <div class="card h-100">
                     <!-- Plant image, fill with placeholder if not present -->
                     {% if plant.image_url %}
-                    <img class="card-img-top" src={{ plant.Image_url }} alt="Image of {{ plant.Common_name }}" />
+                    <img class="card-img-top" src={{ plant.Image_url }} alt="Image of {{ plant.common_name }}" />
                     {% else %}
                     <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
                     {% endif %}
@@ -63,6 +72,10 @@
                     </div>
                 </div>
             </div>
+            {% empty %}
+                <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-5">
+                    <p>No plants found, please try again</p>
+                </div>
             {% endfor %}
         </div>
     </div>

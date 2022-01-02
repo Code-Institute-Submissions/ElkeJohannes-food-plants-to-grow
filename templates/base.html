@@ -13,6 +13,8 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Shop homepage css from startbootstrap.com -->
     <link rel="stylesheet" href="{% static 'css/shop_homepage_styles.css' %}">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/659d0d4dda.js" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% block customHead %}
@@ -48,19 +50,21 @@
             </div>
         </nav>
     </header>
-    
+
     <div class="row d-flex justify-content-center">
         <div class="col-9">
             {% block bodyMain %}
             {% endblock %}
         </div>
     </div>
-    
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
+    <!-- JQuery slim and minified -->
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     {% block customBodyEnd %}
     {% endblock %}
 </body>
