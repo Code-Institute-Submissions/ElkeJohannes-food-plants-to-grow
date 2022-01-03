@@ -42,7 +42,7 @@
                     </button>
                 </div>
                 <input class="quantity-input" type="number" name="quantity" value="1" min="1" max="{{plant.stock}}"
-                    data-item_id="{{ plant.id }}" id="id_qty_{{ plant.id }}">
+                    data-item_id="{{ plant.id }}" id="id_qty_{{ plant.id }}" disabled>
                 <div class="input-group-append">
                     <button class="btn btn-black" data-item_id="{{ plant.id }}"
                         id="increment-quantity">
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="text-center m-1">
-                <button class="btn btn-success">Add to cart</button>                
+                <a href="#" class="btn btn-success">Add to cart</a>                
             </div>
         </div>
     </div>
@@ -66,4 +66,28 @@
         {% endif %}
     </div>
 </section>
+{% endblock %}
+
+{% block customBodyEnd %}
+<script>
+    // Function to increment (+)
+    $('#increment-quantity').click(function(){
+        const STOCK = '{{plant.stock}}';
+        let currentVal = parseInt($('.quantity-input').val());
+        if(currentVal < STOCK){
+            currentVal++;
+            $('.quantity-input').val(currentVal);
+        }
+    })
+
+    // Function to decrement (-)
+    $('#decrement-quantity').click(function(){
+        const MINIMUM = 1;
+        let currentVal = parseInt($('.quantity-input').val());
+        if(currentVal > MINIMUM){
+            currentVal--;
+            $('.quantity-input').val(currentVal);
+        }
+    })
+</script>
 {% endblock %}
