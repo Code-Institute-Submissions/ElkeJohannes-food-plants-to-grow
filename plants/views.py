@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Plant, Category
 from django.db.models import Q
 
@@ -23,4 +23,16 @@ def all_plants(request):
         'categories': categories
     }
 
-    return render(request, 'plants/plants.html', context)
+    return render(request, 'plants/all_plants.html', context)
+
+
+def single_plant(request, plant_id):
+    """ Show the page for a single plant """
+
+    plant = get_object_or_404(Plant, pk=plant_id)
+
+    context = {
+        'plant': plant
+    }
+
+    return render(request, 'plants/single_plant.html', context)
