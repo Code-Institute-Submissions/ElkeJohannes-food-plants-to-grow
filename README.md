@@ -144,5 +144,7 @@ The following wireframes were made using Balsamiq to give a rough idea of the pr
 ### **<ins>Acknowledgements</ins>** 
 - Shop template taken from [Startbootstrap.com](https://startbootstrap.com/template/shop-homepage)
 - Color sheme from [Colorhunt.co](https://colorhunt.co/palette/125c133e7c17f4a442e8e1d9)
+- Tutorial for adding extra fields to users [cpadiernos](https://cpadiernos.github.io/how-to-add-fields-to-the-user-model-in-django.html)
 - The following stackoverflow questions:
   - [Filtering by category](https://stackoverflow.com/questions/4062955/django-foreign-key-queries)
+  - [Resetting django db](https://stackoverflow.com/questions/44651760/django-db-migrations-exceptions-inconsistentmigrationhistory)
