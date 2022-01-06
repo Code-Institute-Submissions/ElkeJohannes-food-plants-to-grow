@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+def profile(request):
+    """ Return the users profile page """
+
+    return render(request, 'accounts/profile.html')

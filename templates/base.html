@@ -39,14 +39,14 @@
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
                         {% if request.user.is_authenticated %}
                         <li class="nav-item">
-                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+                            <a href="{% url 'account_logout' %}" class="nav-link">Logout</a>
                         </li>
                         {% else %}
                         <li class="nav-item">
-                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
+                            <a href="{% url 'account_signup' %}" class="nav-link">Register</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+                            <a href="{% url 'account_login' %}" class="nav-link">Login</a>
                         </li>
                         {% endif %}
                     </ul>
