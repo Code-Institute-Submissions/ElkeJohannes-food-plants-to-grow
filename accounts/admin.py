@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Users, Addresses
+from .models import Users
+
 
 class UsersAdmin(UserAdmin):
     list_display = (
@@ -13,7 +14,15 @@ class UsersAdmin(UserAdmin):
             'fields': ('username', 'password')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('first_name', 'last_name', 'email','phone_number')
+        }),
+        ('Shipping info', {
+            'fields': ('shipping_street_address1', 'shipping_street_address2', 'shipping_town_or_city', 
+                       'shipping_county', 'shipping_postcode', 'shipping_country')
+        }),
+        ('Billing info', {
+            'fields': ('billing_street_address1', 'billing_street_address2', 'billing_town_or_city',
+                    'billing_county', 'billing_postcode', 'billing_country')
         }),
         ('Permissions', {
             'fields': (
@@ -31,7 +40,15 @@ class UsersAdmin(UserAdmin):
             'fields': ('username', 'password1', 'password2')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('first_name', 'last_name', 'email','phone_number')
+        }),
+        ('Shipping info', {
+            'fields': ('shipping_street_address1', 'shipping_street_address2', 'shipping_town_or_city', 
+                       'shipping_county', 'shipping_postcode', 'shipping_country')
+        }),
+        ('Billing info', {
+            'fields': ('billing_street_address1', 'billing_street_address2', 'billing_town_or_city',
+                    'billing_county', 'billing_postcode', 'billing_country')
         }),
         ('Permissions', {
             'fields': (
@@ -44,16 +61,4 @@ class UsersAdmin(UserAdmin):
         })
     )
 
-class AddressesAdmin(admin.ModelAdmin):
-    list_display = (
-        'street',
-        'street_number',
-        'postal_code',
-        'city',
-        'state_or_provence',
-        'country',
-    )
-
-
 admin.site.register(Users, UsersAdmin)
-admin.site.register(Addresses, AddressesAdmin)
