@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block bodyMain %}
+{% for item in cart_items %}
+{{ item }}
+{% endfor %}
+<div>
+    Total price: {{ total_price }}
+</div>
+<div>
+    Number of plants: {{ plant_count }}
+</div>
+{% endblock %}

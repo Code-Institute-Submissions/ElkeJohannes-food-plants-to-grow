@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'home',
     'plants',
     'accounts',
+    'shoppingcart',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'shoppingcart.contexts.cart_contents',
 
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
