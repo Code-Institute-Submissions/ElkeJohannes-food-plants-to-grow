@@ -2,8 +2,11 @@
 {% load static %}
 
 {% block bodyMain %}
-{% for item in cart_items %}
-{{ item }}
+{% for plant in cart_items %}
+<p>
+    Common name: {{plant.common_name}} <br>
+    Botanical name: {{plant.botanical_name}} <br>
+</p>
 {% endfor %}
 <div>
     Total price: {{ total_price }}

@@ -31,31 +31,31 @@
         </div>
 
         <!-- Add to cart # and button -->
-        <div class="mt-4">
+        <form method="POST" action="{% url 'add_to_cart' plant.id %}" class="mt-4">
+            {% csrf_token %}
             <div class="input-group justify-content-center m-1">
                 <div class="input-group-prepend">
-                    <button class="btn btn-black" data-item_id="{{ plant.id }}"
-                        id="decrement-quantity">
+                    <a class="btn btn-black" id="decrement-quantity">
                         <span class="icon">
                             <i class="fas fa-minus"></i>
                         </span>
-                    </button>
+                    </a>
                 </div>
-                <input class="quantity-input" type="number" name="quantity" value="1" min="1" max="{{plant.stock}}"
-                    data-item_id="{{ plant.id }}" id="id_qty_{{ plant.id }}" disabled>
+                <input class="quantity-input hidden" name="quantity" id="quantity" value="1">
+                <input class="quantity-input" name="quantity-visible" id="quantity-visible" 
+                        value="1" min="1" max="{{plant.stock}}" disabled>
                 <div class="input-group-append">
-                    <button class="btn btn-black" data-item_id="{{ plant.id }}"
-                        id="increment-quantity">
+                    <a class="btn btn-black" id="increment-quantity">
                         <span class="icon">
                             <i class="fas fa-plus"></i>
                         </span>
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="text-center m-1">
-                <a href="#" class="btn btn-success">Add to cart</a>                
+                <button type="submit" class="btn btn-success">Add to cart</button>           
             </div>
-        </div>
+        </form>
     </div>
     <div class="col-4 text-center">
         <!-- Plant image, fill with placeholder if not present -->
@@ -73,7 +73,7 @@
     // Function to increment (+)
     $('#increment-quantity').click(function(){
         const STOCK = '{{plant.stock}}';
-        let currentVal = parseInt($('.quantity-input').val());
+        let currentVal = parseInt($('#quantity-visible').val());
         if(currentVal < STOCK){
             currentVal++;
             $('.quantity-input').val(currentVal);
@@ -83,7 +83,7 @@
     // Function to decrement (-)
     $('#decrement-quantity').click(function(){
         const MINIMUM = 1;
-        let currentVal = parseInt($('.quantity-input').val());
+        let currentVal = parseInt($('#quantity-visible').val());
         if(currentVal > MINIMUM){
             currentVal--;
             $('.quantity-input').val(currentVal);
