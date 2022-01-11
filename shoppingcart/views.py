@@ -5,15 +5,18 @@ from plants.models import Plant
 
 def view_cart(request):
     """ Show the cart """
-
-    return render(request, 'shoppingcart/cart.html')
+    
+    return render(request, 'shoppingcart/view_cart.html')
 
 
 def add_to_cart(request, plant_id):
     """ Add an item to the cart """
 
     quantity = int(request.POST.get('quantity'))
-    cart = request.session.get('cart', {})
+    if request.session.get('cart') != None :
+        cart = request.session.get('cart', {})
+    else :
+        cart = request.session['cart']
 
     # If the plant is already in the cart, update the quantity
     if plant_id in list(cart.keys()):
@@ -23,5 +26,4 @@ def add_to_cart(request, plant_id):
 
     request.session['cart'] = cart
 
-    # return redirect(reverse('all_plants'))
-    return render(request, 'shoppingcart/cart.html')
+    return render(request, 'shoppingcart/view_cart.html')

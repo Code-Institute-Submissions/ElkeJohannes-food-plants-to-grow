@@ -1,0 +1,16 @@
+.img-cart{
+    border: 1px solid black;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.shoppingcart .row .col-2,
+.shoppingcart .row .col-3,
+.shoppingcart .row .col-11{
+    border-bottom: 1px solid grey;
+}
+
+.quantity-input {
+    width: 2rem;
+}

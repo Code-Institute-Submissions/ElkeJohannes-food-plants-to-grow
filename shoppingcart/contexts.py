@@ -1,4 +1,3 @@
-from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from plants.models import Plant
@@ -9,16 +8,22 @@ def cart_contents(request):
     plant_count = 0
     cart = request.session.get('cart', {})
 
+    # Add to the cart
     for key, value in cart.items():
         plant = get_object_or_404(Plant, pk=key)
-        cart_items.append(plant)
-        total_price += plant.price * value
-        plant_count += value # or maybe just do a +1?
+        cart_items.append({
+            'id': plant.id,
+            'common_name': plant.common_name,
+            'price': plant.price,
+            'amount': value,
+            'image': plant.image_url,
+            'stock': plant.stock,
+        })
 
     context = {
         'cart_items': cart_items,
         'total_price': total_price,
-        'plant_count': plant_count,
+        'plant_count': len(cart_items),
     }
 
     return context

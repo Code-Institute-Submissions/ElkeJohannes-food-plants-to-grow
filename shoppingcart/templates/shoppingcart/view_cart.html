@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block customHead %}
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'shoppingcart/css/cart.css' %}">
+{% endblock %}
+
+{% block bodyMain %}
+
+<script>
+    // Function to set the line total
+    function set_line_total(plant_id, quantity) {
+        // Get the plant price using the plant id
+        plant_price = parseInt($(`#price_${plant_id}`).html() * 100);
+        line_total = quantity * plant_price;
+        line_total = parseFloat(line_total / 100).toFixed(2);
+        $(`#line-total_${plant_id}`).html(`
+            ${line_total}
+        `);
+        // Update the subtotal
+        set_subtotal();
+    }
+
+    // Function to set the subtotal
+    function set_subtotal(){
+        let subtotal= 0;
+        $('.line-total').each(function() {
+            subtotal += parseInt($(this).html() * 100);
+        });
+
+        subtotal = parseFloat(subtotal / 100).toFixed(2);
+        $('#subtotal').html(subtotal);
+    }
+</script>
+
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-11 col-xl-10 shoppingcart">
+        <div class="row m-2 mt-5">
+            <div class="col-11">
+                <h5>
+                    Shoppingcart contents:
+                </h5>
+            </div>
+        </div>
+        {% for plant in cart_items %}
+        <div class="row m-2">
+            <div class="col-2 text-center">
+                {% if plant.image_url %}
+                <img class="img-cart mt-1 mb-3 ms-2" src={{ plant.Image_url }} alt="Image of {{ plant.common_name }}" />
+                {% else %}
+                <img class="img-cart mt-1 mb-3 ms-2" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
+                {% endif %}
+            </div>
+            <div class="col-3 mt-2">
+                <p>
+                    {{plant.common_name}}
+                </p>
+            </div>
+            <div class="col-2 mt-2">
+                Price: <span id="price_{{plant.id}}">{{plant.price}}</span>
+            </div>
+            <div class="col-2 mt-2 text-center">
+                Amount:
+                <div class="input-group m-1 justify-content-center">
+                    <a class="btn btn-black decrement-quantity input-group-prepend">
+                        <span class="icon">
+                            <i class="fas fa-minus"></i>
+                        </span>
+                    </a>
+                    <input class="quantity-input hidden" name="quantity" id="quantity_{{plant.id}}"
+                        value="{{plant.amount}}" data-stock='{{plant.stock}}'>
+                    <input class="quantity-input" name="quantity-visible" value="{{plant.amount}}" disabled>
+                    <a class="btn btn-black increment-quantity input-group-append">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-2 mt-2">
+                Line total: € <span class="line-total" id="line-total_{{plant.id}}">00,00</span>
+            </div>
+        </div>
+
+        <script>set_line_total('{{plant.id}}', '{{plant.amount}}');</script>
+        {% endfor %}
+        <div class="row m-2">
+            <div class="col-9 mt-2">
+            </div>
+            <div class="col-2 mt-2">
+                Subtotal: € <span id="subtotal">{{ total_price }}</span>
+                <script>set_subtotal();</script>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center mt-4">
+    <div class="col-12 col-sm-10 col-lg-9 col-xl-8">
+
+    </div>
+</div>
+{% endblock %}
+
+{% block customBodyEnd %}
+<script>
+    // Function to increment (+)
+    $('.increment-quantity').click(function () {
+        const STOCK = parseInt($(this).siblings('.quantity-input').attr("data-stock"));
+        let currentVal = parseInt($(this).siblings('.quantity-input').val());
+        if (currentVal < STOCK) {
+            currentVal++;
+            $(this).siblings('.quantity-input').val(currentVal);
+            // Extract the plant ID and send it to set the new line total
+            line_id = $(this).siblings('.quantity-input').attr("id").substring(9);
+            set_line_total(line_id, currentVal);
+        }
+    })
+
+    // Function to decrement (-)
+    $('.decrement-quantity').click(function () {
+        const MINIMUM = 1;
+        let currentVal = parseInt($(this).siblings('.quantity-input').val());
+        if (currentVal > MINIMUM) {
+            currentVal--;
+            $(this).siblings('.quantity-input').val(currentVal);
+            // Extract the plant ID and send it to set the new line total
+            line_id = $(this).siblings('.quantity-input').attr("id").substring(9);
+            set_line_total(line_id, currentVal);
+        }
+    })
+</script>
+{% endblock %}
