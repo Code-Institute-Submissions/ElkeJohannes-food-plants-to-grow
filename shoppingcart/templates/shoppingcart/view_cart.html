@@ -52,16 +52,16 @@
                 <img class="img-cart mt-1 mb-3 ms-2" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
                 {% endif %}
             </div>
-            <div class="col-3 mt-2">
+            <a href="{% url 'single_plant' plant.id %}" class="col-3 mt-2">
                 <p>
                     {{plant.common_name}}
                 </p>
-            </div>
+            </a>
             <div class="col-2 mt-2">
-                Price: <span id="price_{{plant.id}}">{{plant.price}}</span>
+                Price: € <span id="price_{{plant.id}}">{{plant.price}}</span>
             </div>
             <div class="col-2 mt-2 text-center">
-                Amount:
+                <div>Amount:</div>
                 <div class="input-group m-1 justify-content-center">
                     <a class="btn btn-black decrement-quantity input-group-prepend">
                         <span class="icon">
@@ -74,6 +74,13 @@
                     <a class="btn btn-black increment-quantity input-group-append">
                         <span class="icon">
                             <i class="fas fa-plus"></i>
+                        </span>
+                    </a>
+                </div>
+                <div>
+                    <a href="{% url 'delete_from_cart' plant.id %}">
+                        <span class="icon">
+                            <i class="fas fa-trash"></i>
                         </span>
                     </a>
                 </div>

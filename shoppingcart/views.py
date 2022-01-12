@@ -13,17 +13,23 @@ def add_to_cart(request, plant_id):
     """ Add an item to the cart """
 
     quantity = int(request.POST.get('quantity'))
-    if request.session.get('cart') != None :
-        cart = request.session.get('cart', {})
-    else :
-        cart = request.session['cart']
-
+    cart = request.session.get('cart', {})
     # If the plant is already in the cart, update the quantity
     if plant_id in list(cart.keys()):
         cart[plant_id] += quantity
     else:
         cart[plant_id] = quantity
 
+    request.session['cart'] = cart
+
+    return render(request, 'shoppingcart/view_cart.html')
+
+
+def delete_from_cart(request, plant_id):
+    """ Remove an item from the shoppingcart """
+
+    cart = request.session.get('cart', {})
+    cart.pop(plant_id)
     request.session['cart'] = cart
 
     return render(request, 'shoppingcart/view_cart.html')

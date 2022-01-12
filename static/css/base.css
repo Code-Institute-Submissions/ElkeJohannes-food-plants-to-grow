@@ -1,3 +1,7 @@
 .hidden{
     display: none !important;
 }
+
+.quantity-input {
+    width: 2.5rem;
+}
