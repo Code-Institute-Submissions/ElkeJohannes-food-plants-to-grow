@@ -10,3 +10,7 @@
 .shoppingcart .row .col-11{
     border-bottom: 1px solid grey;
 }
+
+.checkout {
+    border-bottom: 0px !important;
+}
