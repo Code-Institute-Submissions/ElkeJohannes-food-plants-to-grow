@@ -5,15 +5,10 @@ from django_countries.fields import CountryField
 
 class Users(AbstractUser):
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    shipping_street_address1 = models.CharField(max_length=80, null=False, blank=False)
-    shipping_street_address2 = models.CharField(max_length=80, null=False, blank=False)
-    shipping_town_or_city = models.CharField(max_length=40, null=False, blank=False)
-    shipping_county = models.CharField(max_length=80, null=True, blank=True)
-    shipping_postcode = models.CharField(max_length=20, null=True, blank=True)
-    shipping_country = CountryField(blank_label='Country', null=False, blank=False)
-    billing_street_address1 = models.CharField(max_length=80, null=False, blank=False)
-    billing_street_address2 = models.CharField(max_length=80, null=False, blank=False)
-    billing_town_or_city = models.CharField(max_length=40, null=False, blank=False)
-    billing_county = models.CharField(max_length=80, null=True, blank=True)
-    billing_postcode = models.CharField(max_length=20, null=True, blank=True)
-    billing_country = CountryField(blank_label='Country', null=False, blank=False)
+    street_name = models.CharField(max_length=80, null=False, blank=False)
+    street_number = models.CharField(max_length=80, null=False, blank=False)
+    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    country = CountryField(blank_label='Country', null=True, blank=True)
+    
