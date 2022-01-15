@@ -6,25 +6,26 @@ from django.db.models import Sum
 from django.db.models.deletion import CASCADE, SET_NULL
 from django.db.models.expressions import Case
 from plants.models import Plant
-from accounts.models import Users
+from accounts.models import Account
 from django_countries.fields import CountryField
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user = models.ForeignKey(Users, null=True, on_delete=SET_NULL)
+    user = models.ForeignKey(Account, null=True, on_delete=SET_NULL)
     date = models.DateTimeField(auto_now_add=True)
-    shipping_street_name = models.CharField(max_length=80, null=True, blank=True)
-    shipping_street_number = models.CharField(max_length=80, null=True, blank=True)
-    shipping_town_or_city = models.CharField(max_length=40, null=True, blank=True)
+    full_name = models.CharField(max_length=80, null=False, blank=False)
+    shipping_street_name = models.CharField(max_length=80, null=False, blank=False)
+    shipping_street_number = models.CharField(max_length=80, null=False, blank=False)
+    shipping_town_or_city = models.CharField(max_length=40, null=False, blank=False)
     shipping_county = models.CharField(max_length=80, null=True, blank=True)
     shipping_postcode = models.CharField(max_length=20, null=True, blank=True)
-    shipping_country = CountryField(blank_label='Country', null=True, blank=True)
-    billing_street_name = models.CharField(max_length=80, null=True, blank=True)
-    billing_street_number = models.CharField(max_length=80, null=True, blank=True)
-    billing_town_or_city = models.CharField(max_length=40, null=True, blank=True)
+    shipping_country = CountryField(blank_label='Country', null=False, blank=False)
+    billing_street_name = models.CharField(max_length=80, null=False, blank=False)
+    billing_street_number = models.CharField(max_length=80, null=False, blank=False)
+    billing_town_or_city = models.CharField(max_length=40, null=False, blank=False)
     billing_county = models.CharField(max_length=80, null=True, blank=True)
     billing_postcode = models.CharField(max_length=20, null=True, blank=True)
-    billing_country = CountryField(blank_label='Country', null=True, blank=True)
+    billing_country = CountryField(blank_label='Country', null=False, blank=False)
     shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=00.00)
     order_total = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
     total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)

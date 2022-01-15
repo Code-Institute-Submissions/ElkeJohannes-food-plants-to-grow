@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Users
+from .models import Account
 
 
-class UsersAdmin(UserAdmin):
+class AccountsAdmin(UserAdmin):
     list_display = (
         'username', 'email', 'first_name', 'last_name'
         )
@@ -49,4 +49,4 @@ class UsersAdmin(UserAdmin):
         })
     )
 
-admin.site.register(Users, UsersAdmin)
+admin.site.register(Account, AccountsAdmin)

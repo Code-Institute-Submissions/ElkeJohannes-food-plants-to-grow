@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_countries',
+    'django_extensions',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
     'home',
     'plants',
     'accounts',
@@ -68,6 +70,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'food_plants_to_grow.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 TEMPLATES = [
     {
@@ -89,6 +93,10 @@ TEMPLATES = [
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
@@ -164,4 +172,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.Users'
+AUTH_USER_MODEL = 'accounts.Account'
