@@ -29,6 +29,7 @@ class Order(models.Model):
     shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=00.00)
     order_total = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
     total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """ Generate a unique order number """
