@@ -35,6 +35,8 @@ DEBUG = development
 
 if development :
     ALLOWED_HOSTS = ['127.0.0.1']
+else: 
+    ALLOWED_HOSTS = ['ejh-food-plants-to-grow.herokuapp.com']
 
 
 # Application definition
