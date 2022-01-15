@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block bodyMain %}
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-11 col-xl-10">
+        <div class="row m-2 mt-5">
+            <div class="col-11">
+                <form action="{% url 'checkout' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend>Personal information:</legend>
+                        {{ order_form.full_name | as_crispy_field }}
+                    </fieldset>
+                    <fieldset>
+                        <legend>Shipping information</legend>
+                        {{ order_form.shipping_street_name | as_crispy_field }}
+                        {{ order_form.shipping_street_number | as_crispy_field }}
+                        {{ order_form.shipping_town_or_city | as_crispy_field }}
+                        {{ order_form.shipping_county | as_crispy_field }}
+                        {{ order_form.shipping_postcode | as_crispy_field }}
+                        {{ order_form.shipping_country | as_crispy_field }}
+                    </fieldset>
+                    <fieldset>
+                        <legend>Billing information</legend>
+                        {{ order_form.billing_street_name | as_crispy_field }}
+                        {{ order_form.billing_street_number | as_crispy_field }}
+                        {{ order_form.billing_town_or_city | as_crispy_field }}
+                        {{ order_form.billing_county | as_crispy_field }}
+                        {{ order_form.billing_postcode | as_crispy_field }}
+                        {{ order_form.billing_country | as_crispy_field }}
+                    </fieldset>
+                    <button type="submit" >Confirm purchase</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
