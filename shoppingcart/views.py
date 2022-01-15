@@ -32,8 +32,6 @@ def update_cart(request):
     for plant_id, quantity in cart.items():
         quantity = int(request.POST.get('quantity_' + str(plant_id)))
         cart[plant_id] = quantity
-        print('plant_id: ' + str(plant_id))
-        print('quantity: ' + str(quantity))
 
     request.session['cart'] = cart
 
