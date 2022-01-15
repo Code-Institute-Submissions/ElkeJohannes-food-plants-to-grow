@@ -1,0 +1,1 @@
+web: gunicorn food_plants_to_grow.wsgi:application
