@@ -41,6 +41,8 @@ class Order(models.Model):
         """
 
         self.order_total = self.line_items.aggregate(Sum('line_total'))['line_total__sum']
+        if self.order_total == None:
+            self.order_total = Decimal(00.00)
         self.shipping_fee = Decimal(15.75)
         self.total_cost = self.order_total + self.shipping_fee
         
