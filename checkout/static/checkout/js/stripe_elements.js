@@ -59,13 +59,11 @@ form.addEventListener('submit', function(ev) {
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
-        'save_info': saveInfo,
+        // 'save_info': saveInfo,
     };
-    console.log('about to make ajax call');
-    var url = 'cache_checkout_data/';
+    var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
-        console.log('done with payment');
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -74,11 +72,11 @@ form.addEventListener('submit', function(ev) {
                     // phone: $.trim(form.phone_number.value),
                     // email: $.trim(form.email.value),
                     address:{
-                        line1: $.trim(form.street_name.value),
-                        line2: $.trim(form.street_number.value),
-                        city: $.trim(form.town_or_city.value),
-                        country: $.trim(form.country.value),
-                        state: $.trim(form.county.value),
+                        line1: $.trim(form.billing_street_name.value),
+                        line2: $.trim(form.billing_street_number.value),
+                        city: $.trim(form.billing_town_or_city.value),
+                        country: $.trim(form.billing_country.value),
+                        state: $.trim(form.billing_county.value),
                     }
                 }
             },
@@ -86,12 +84,12 @@ form.addEventListener('submit', function(ev) {
                 name: $.trim(form.full_name.value),
                 // phone: $.trim(form.phone_number.value),
                 address: {
-                    line1: $.trim(form.street_name.value),
-                    line2: $.trim(form.street_number.value),
-                    city: $.trim(form.town_or_city.value),
-                    country: $.trim(form.country.value),
-                    postal_code: $.trim(form.postcode.value),
-                    state: $.trim(form.county.value),
+                    line1: $.trim(form.shipping_street_name.value),
+                    line2: $.trim(form.shipping_street_number.value),
+                    city: $.trim(form.shipping_town_or_city.value),
+                    country: $.trim(form.shipping_country.value),
+                    postal_code: $.trim(form.shipping_postcode.value),
+                    state: $.trim(form.shipping_county.value),
                 }
             },
         }).then(function(result) {

@@ -1,10 +1,10 @@
-from locale import currency
 from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from checkout.forms import OrderForm
 from plants.models import Plant
-from .models import Order, OrderLineItem
+from .models import OrderLineItem
+from shoppingcart.contexts import cart_contents
 
 import stripe
 import json
@@ -24,6 +24,7 @@ def cache_checkout_data(request):
     except Exception as e:
         # messages.error(request, 'Sorry, your payment cannot be \
         #     processed right now. Please try again later.')
+        print(e)
         return HttpResponse(content=e, status=400)
 
 
@@ -56,24 +57,23 @@ def checkout(request):
                     )
                     order_line_item.save()
 
-            # Handle the payment via stripe
-            order.update_total()
-            stripe_total = round(order.total_cost * 100)
-            stripe.api_key = stripe_secret_key
-            intent = stripe.PaymentIntent.create(
-                amount=stripe_total,
-                currency=settings.STRIPE_CURRENCY
-            )
-
         # Empty the shoppingcart and redirect back to home
         request.session['cart'] = {}
         return redirect(reverse('home'))
     else:
+        # Prepare stripe payment intent
+        current_cart = cart_contents(request)
+        stripe_total = current_cart['total_price']
+        stripe.api_key = stripe_secret_key
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY
+        )
         order_form = OrderForm()
-
         context = {
             'order_form': order_form,
             'stripe_public_key': stripe_public_key,
+            'client_secret': intent.client_secret,
         }
 
         return render(request, 'checkout/checkout.html', context)

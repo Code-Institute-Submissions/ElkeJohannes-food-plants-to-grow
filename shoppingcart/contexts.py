@@ -1,12 +1,11 @@
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 from plants.models import Plant
+from checkout.models import Order
 
 def cart_contents(request):
     cart_items = []
-    total_price = 0
-    plant_count = 0
     cart = request.session.get('cart', {})
+    total_price = 0
 
     # Add to the cart
     for key, value in cart.items():
@@ -19,11 +18,14 @@ def cart_contents(request):
             'image': plant.image_url,
             'stock': plant.stock,
         })
+        total_price += value * round(plant.price * 100)
 
+    order = Order()
+    total_price += round(order.shipping_fee * 100)
     context = {
         'cart_items': cart_items,
-        'total_price': total_price,
         'plant_count': len(cart_items),
+        'total_price': total_price,
     }
 
     return context

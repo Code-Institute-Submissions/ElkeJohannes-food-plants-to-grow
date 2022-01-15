@@ -26,7 +26,7 @@ class Order(models.Model):
     billing_county = models.CharField(max_length=80, null=True, blank=True)
     billing_postcode = models.CharField(max_length=20, null=True, blank=True)
     billing_country = CountryField(blank_label='Country', null=False, blank=False)
-    shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=00.00)
+    shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=Decimal(15.75))
     order_total = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
     total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
@@ -44,7 +44,6 @@ class Order(models.Model):
         self.order_total = self.line_items.aggregate(Sum('line_total'))['line_total__sum']
         if self.order_total == None:
             self.order_total = Decimal(00.00)
-        self.shipping_fee = Decimal(15.75)
         self.total_cost = self.order_total + self.shipping_fee
         
         self.save()
