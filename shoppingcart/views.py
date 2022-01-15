@@ -25,6 +25,21 @@ def add_to_cart(request, plant_id):
     return render(request, 'shoppingcart/view_cart.html')
 
 
+def update_cart(request):
+    """ Update the number of items in the cart """
+    
+    cart = request.session.get('cart', {})
+    for plant_id, quantity in cart.items():
+        quantity = int(request.POST.get('quantity_' + str(plant_id)))
+        cart[plant_id] = quantity
+        print('plant_id: ' + str(plant_id))
+        print('quantity: ' + str(quantity))
+
+    request.session['cart'] = cart
+
+    return redirect(reverse('checkout'))
+
+
 def delete_from_cart(request, plant_id):
     """ Remove an item from the shoppingcart """
 

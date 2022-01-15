@@ -23,9 +23,9 @@
     }
 
     // Function to set the subtotal
-    function set_subtotal(){
-        let subtotal= 0;
-        $('.line-total').each(function() {
+    function set_subtotal() {
+        let subtotal = 0;
+        $('.line-total').each(function () {
             subtotal += parseInt($(this).html() * 100);
         });
 
@@ -35,7 +35,8 @@
 </script>
 
 <div class="row justify-content-center">
-    <div class="col-12 col-sm-11 col-xl-10 shoppingcart">
+    <form method="post" action="{% url 'update_cart' %}" class="col-12 col-sm-11 col-xl-10 shoppingcart">
+        {% csrf_token %}
         <div class="row m-2 mt-5">
             <div class="col-11">
                 <h5>
@@ -68,7 +69,7 @@
                             <i class="fas fa-minus"></i>
                         </span>
                     </a>
-                    <input class="quantity-input hidden" name="quantity" id="quantity_{{plant.id}}"
+                    <input class="quantity-input hidden" name="quantity_{{plant.id}}" id="quantity_{{plant.id}}"
                         value="{{plant.amount}}" data-stock='{{plant.stock}}'>
                     <input class="quantity-input" name="quantity-visible" value="{{plant.amount}}" disabled>
                     <a class="btn btn-black increment-quantity input-group-append">
@@ -102,12 +103,12 @@
         <div class="row m-2">
             <div class="col-9 mt-2"></div>
             <div class="col-2 mt-2 checkout">
-                <a href="" class="btn btn-success">
+                <button type="submit" class="btn btn-success">
                     Checkout
-                </a>
+                </button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 {% endblock %}
 
