@@ -4,9 +4,9 @@
 {% block bodyMain %}
 <!-- Intro text -->
 <header class="text-center">
-    <h1 class="mt-5">Start growing your own food <a href="#">right now!</a></h1>
+    <h1 class="mt-5">Start growing your own food <a href="{% url 'all_plants' %}">right now!</a></h1>
     <p class="mt-5">
-        Got a suggestion for a plant you think we should be selling? <br> <a href="#">Tell us!</a>
+        Got a suggestion for a plant you think we should be selling? <br> <a href="{% url 'view_suggestions' %}">Tell us!</a>
     </p>
 </header>
 
