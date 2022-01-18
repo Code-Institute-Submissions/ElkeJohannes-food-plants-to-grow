@@ -14,6 +14,7 @@ class Order(models.Model):
     user = models.ForeignKey(Account, null=True, on_delete=SET_NULL)
     date = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=80, null=False, blank=False)
+    email = models.CharField(max_length=80, null=False, blank=False)
     shipping_street_name = models.CharField(max_length=80, null=False, blank=False)
     shipping_street_number = models.CharField(max_length=80, null=False, blank=False)
     shipping_town_or_city = models.CharField(max_length=40, null=False, blank=False)
@@ -27,8 +28,8 @@ class Order(models.Model):
     billing_postcode = models.CharField(max_length=20, null=True, blank=True)
     billing_country = CountryField(blank_label='Country', null=False, blank=False)
     shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=Decimal(15.75))
-    order_total = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
-    total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=00.00)
+    order_total = models.DecimalField(decimal_places=2, max_digits=10, default=Decimal(00.00))
+    total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=Decimal(00.00))
     stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
@@ -42,8 +43,6 @@ class Order(models.Model):
         """
 
         self.order_total = self.line_items.aggregate(Sum('line_total'))['line_total__sum']
-        if self.order_total == None:
-            self.order_total = Decimal(00.00)
         self.total_cost = self.order_total + self.shipping_fee
         
         self.save()

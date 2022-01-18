@@ -1,3 +1,7 @@
+"""
+Code below mostly comes from the Code Institute 'Boutique Ado' Project
+"""
+
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -80,8 +84,7 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
-                    # email__iexact=billing_details.email,
-                    # phone_number__iexact=shipping_details.phone,
+                    email__iexact=billing_details.email,
                     country__iexact=shipping_details.address.country,
                     postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=shipping_details.address.city,
@@ -107,8 +110,7 @@ class StripeWH_Handler:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
                     user_profile=profile,
-                    # email=billing_details.email,
-                    # phone_number=shipping_details.phone,
+                    email=billing_details.email,
                     country=shipping_details.address.country,
                     postcode=shipping_details.address.postal_code,
                     town_or_city=shipping_details.address.city,

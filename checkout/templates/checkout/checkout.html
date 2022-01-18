@@ -9,11 +9,12 @@
     <div class="col-12 col-sm-11 col-xl-10">
         <div class="row m-2 mt-5">
             <div class="col-11">
-                <form action="{% url 'cache_checkout_data' %}" method="post" id="payment-form">
+                <form action="{% url 'checkout' %}" method="post" id="payment-form">
                     {% csrf_token %}
                     <fieldset>
                         <legend>Personal information:</legend>
                         {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
                     </fieldset>
                     <fieldset>
                         <legend>Shipping information</legend>
