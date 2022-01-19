@@ -5,6 +5,8 @@ from checkout.forms import OrderForm
 from plants.models import Plant
 from .models import OrderLineItem
 from shoppingcart.contexts import cart_contents
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 import stripe
 import json
@@ -42,6 +44,9 @@ def checkout(request):
                 order.user = request.user
             order.save()
 
+            # Give the user a confirmation email
+            # _send_confirmation_email(order)
+
             # Create a line item in the order for every plant
             for item_id, item_data in cart.items():
                 plant = Plant.objects.get(id=item_id)
@@ -73,3 +78,20 @@ def checkout(request):
         }
 
         return render(request, 'checkout/checkout.html', context)
+
+
+def _send_confirmation_email(order):
+    """Send the user a confirmation email"""
+    cust_email = order.email
+    subject = render_to_string(
+        'checkout/confirmation_email_subject.txt',
+        {'order': order})
+    body = render_to_string(
+        'checkout/confirmation_email_body.txt',
+        {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+    send_mail(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [cust_email]
+    )
