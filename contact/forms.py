@@ -1,5 +1,3 @@
-from cProfile import label
-from tkinter import Label
 from django import forms
 
 
