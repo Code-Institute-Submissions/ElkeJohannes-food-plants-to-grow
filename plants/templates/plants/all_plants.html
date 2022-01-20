@@ -57,7 +57,7 @@
                 <a href="{% url 'single_plant' plant.id %}" class="card h-100">
                     <!-- Plant image, fill with placeholder if not present -->
                     {% if plant.image_url %}
-                    <img class="card-img-top" src={{ plant.Image_url }} alt="Image of {{ plant.common_name }}" />
+                    <img class="card-img-top" src="{{ plant.image_url }}" alt="Image of {{ plant.common_name }}" />
                     {% else %}
                     <img class="card-img-top" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
                     {% endif %}
