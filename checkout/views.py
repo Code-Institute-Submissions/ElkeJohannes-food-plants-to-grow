@@ -5,8 +5,6 @@ from checkout.forms import OrderForm
 from plants.models import Plant
 from .models import OrderLineItem
 from shoppingcart.contexts import cart_contents
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 
 import stripe
 import json
