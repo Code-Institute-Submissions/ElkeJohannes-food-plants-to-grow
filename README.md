@@ -1,12 +1,12 @@
 <div align="center">
 
-![Food plants to Grow](static/img/responsive-mockup.png)
+![Food plants to Grow](media/readme_files/responsive-mockup.png)
 
 ---
 
 Food plants to Grow is a website dedicated to providing users with the opportunity to purchase the plants they need to grow their own food. Users can also suggest plants to add to the website, using a rating system. This site is connected with the "Recipe to Grow" website, which contains plant based recipes. 
 
-**-- [See live site on Heroku]() --**
+**-- [See live site on Heroku](https://ejh-food-plants-to-grow.herokuapp.com/) --**
 
 </div>
 
@@ -34,7 +34,7 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 </details>
 
 **<details><summary>Testing</summary>**
-  - [Test documentation](https://github.com/ElkeJohannes/Recipe-to-grow/blob/main/TESTING.md)
+  - [Test documentation](https://github.com/ElkeJohannes/food-plants-to-grow/blob/main/TESTING.md)
 </details>
 
 **<details><summary>Deployment</summary>**
@@ -58,13 +58,13 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 
 
 ### **<ins>Strategy</ins>**
-
+The main purpose of the website is to allow the shop owner to sell his plants online, and for users to purchase them. The site is slightly community driven in that it receives input on which plants to sell from the users. 
 
 ### **<ins>Scope</ins>**
-
+The site will have a plants page where you can search for a plant and add it to your shoppingcart. Additionally it will have a suggestions page to submit plant suggestions. 
 
 ### **<ins>Structure</ins>**
-
+The main page has links that bring you to the most important parts of the site right away. The menu will collapse into a hamburger menu on tablet or smaller sizes. Each action takes the user to the next logical place to go. For instance after clicking on 'Add to cart' the user is brought to their shoppingcart. 
 
 ### **<ins>Skeleton</ins>**
 The following wireframes were made using Balsamiq to give a rough idea of the project.
@@ -76,7 +76,7 @@ The following wireframes were made using Balsamiq to give a rough idea of the pr
 
 
 ### **<ins>Surface</ins>**
-
+A bright green image featuring leaves from the Beech tree is visible through a transparant background. Overall the site will feature mostly green buttons, but will otherwise be low in colour usage. 
 
 ---
 
@@ -113,6 +113,7 @@ The following wireframes were made using Balsamiq to give a rough idea of the pr
   * Used to create the header image of this readme file.
 - [Favicon generator](https://favicon.io/favicon-generator/)
   * Used to create a custom favicon.
+- Various python modules, entire list visible in [Requirements file](https://github.com/ElkeJohannes/food-plants-to-grow/blob/main/requirements.txt)
 
 
 ---
