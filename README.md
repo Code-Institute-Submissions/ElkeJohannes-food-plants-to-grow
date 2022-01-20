@@ -137,10 +137,10 @@ A bright green image featuring leaves from the Beech tree is visible through a t
 ## &rarr; **Credits**
 
 ### **<ins>Text</ins>**
-
+- All plant common and botanical names as well as the descriptions were taken from: [foodforestnursery.com](https://foodforestnursery.com/product/swamp-white-oak/)
 
 ### **<ins>Media</ins>**
-
+- All plant images were also taken from: [foodforestnursery.com](https://foodforestnursery.com/product/swamp-white-oak/)
 
 ### **<ins>Acknowledgements</ins>** 
 - Shop template taken from [Startbootstrap.com](https://startbootstrap.com/template/shop-homepage)
