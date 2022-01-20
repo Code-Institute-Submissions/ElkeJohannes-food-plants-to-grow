@@ -7,7 +7,7 @@ class UserAccountForm(forms.ModelForm):
     class Meta:
         model = UserAccount
         fields = (
-            'first_name', 'last_name', 'email', 'phone_number',
+            'full_name', 'email', 'phone_number',
             'shipping_street_name', 'shipping_street_number', 
             'shipping_town_or_city', 'shipping_county', 'shipping_postcode',
             'shipping_country', 'billing_street_name', 'billing_street_number',
@@ -17,8 +17,7 @@ class UserAccountForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         placeholders = {
-            'first_name': 'First Name',
-            'last_name': 'Last Name',
+            'full_name': 'Full Name',
             'phone_number': 'Phone number',
             'email': 'Email Address',
             'shipping_street_name': 'Shipping street address 1',

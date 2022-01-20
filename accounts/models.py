@@ -4,8 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django_countries.fields import CountryField
 
 class UserAccount(AbstractUser):
-    first_name = models.CharField(max_length=80, null=False, blank=False)
-    last_name = models.CharField(max_length=80, null=False, blank=False)
+    full_name = models.CharField(max_length=100, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(max_length=254, null=False, blank=False)
     shipping_street_name = models.CharField(max_length=80, null=False, blank=False)

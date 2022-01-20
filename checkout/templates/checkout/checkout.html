@@ -34,6 +34,10 @@
                         {{ order_form.billing_postcode | as_crispy_field }}
                         {{ order_form.billing_country | as_crispy_field }}
                     </fieldset>
+                    <div class="save_info m-3">
+                        <input type="checkbox" name="save_info" id="save_info">
+                        <label for="save_info">Save address information to profile?</label><br>
+                    </div>
                     <fieldset>
                         <legend>Payment</legend>
                         <!-- A Stripe card element will go here -->
@@ -43,7 +47,7 @@
                         <!-- Pass the client secret to the view so we can get the payment intent id -->
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
-                    <button type="submit" id="submit-button">Confirm purchase</button>
+                    <button type="submit" id="submit-button" class="btn btn-success mt-2">Confirm purchase</button>
                 </form>
             </div>
         </div>

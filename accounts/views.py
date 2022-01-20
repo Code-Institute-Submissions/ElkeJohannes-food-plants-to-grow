@@ -11,7 +11,6 @@ def profile(request):
     if request.method == "POST":
         current_user = request.user
         user_profile = UserAccount.objects.get(pk=current_user.id)
-        print(user_profile)
         user_account_form = UserAccountForm(request.POST, instance=user_profile)
         if user_account_form.is_valid() :
             user_account_form.save()

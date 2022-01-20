@@ -10,8 +10,7 @@
                 {% csrf_token %}
                 <fieldset>
                     <legend>Personal information</legend>
-                    {{ user_account_form.first_name | as_crispy_field }}
-                    {{ user_account_form.last_name | as_crispy_field }}
+                    {{ user_account_form.full_name | as_crispy_field }}
                     {{ user_account_form.phone_number | as_crispy_field }}
                     {{ user_account_form.email | as_crispy_field }}
                 </fieldset>

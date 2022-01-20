@@ -3,6 +3,8 @@ from django.views.decorators.http import require_POST
 from django.conf import settings
 from checkout.forms import OrderForm
 from plants.models import Plant
+from accounts.models import UserAccount
+from accounts.forms import UserAccountForm
 from .models import OrderLineItem
 from shoppingcart.contexts import cart_contents
 from django.core.mail import send_mail
@@ -42,6 +44,14 @@ def checkout(request):
             order = order_form.save(commit=False)
             if request.user.is_authenticated:
                 order.user = request.user
+                # If user checked the box to save
+                # save the info to the profile
+                if request.get('save_info'):
+                    current_user = request.user
+                    user_profile = UserAccount.objects.get(pk=current_user.id)
+                    user_account_form = UserAccountForm(request.POST, instance=user_profile)
+                    user_account_form.save()
+
             order.save()
 
             # Create a line item in the order for every plant
@@ -68,7 +78,12 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY
         )
-        order_form = OrderForm()
+        if request.user.is_authenticated:
+            current_user = request.user
+            user_profile = UserAccount.objects.get(pk=current_user.id)
+            order_form = OrderForm(instance=user_profile)
+        else:
+            order_form = OrderForm()
         context = {
             'order_form': order_form,
             'stripe_public_key': stripe_public_key,
