@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'crispy_forms',
     'storages',
     'home',
