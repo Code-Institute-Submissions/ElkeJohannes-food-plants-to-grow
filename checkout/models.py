@@ -5,12 +5,12 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models.deletion import CASCADE, SET_NULL
 from plants.models import Plant
-from accounts.models import Account
+from accounts.models import UserAccount
 from django_countries.fields import CountryField
 
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user = models.ForeignKey(Account, null=True, on_delete=SET_NULL)
+    user = models.ForeignKey(UserAccount, null=True, on_delete=SET_NULL)
     date = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=80, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)

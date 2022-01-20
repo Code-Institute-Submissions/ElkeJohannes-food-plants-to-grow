@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import Account
+from .models import UserAccount
 
 
-class AccountsAdmin(UserAdmin):
+class UserAccountsAdmin(UserAdmin):
     list_display = (
-        'username', 'email', 'first_name', 'last_name'
+        'last_name', 'first_name', 'username', 'email', 
         )
 
     fieldsets = (
@@ -14,9 +14,15 @@ class AccountsAdmin(UserAdmin):
             'fields': ('username', 'password')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email','phone_number',
-                       'street_name', 'street_number', 'town_or_city', 
-                       'county', 'postcode', 'country')
+            'fields': ('first_name', 'last_name', 'email', 'phone_number')
+        }),
+        ('Shipping info', {
+            'fields': ('shipping_street_name', 'shipping_street_number', 'shipping_town_or_city', 
+                       'shipping_county', 'shipping_postcode', 'shipping_country')
+        }),
+        ('Billing info', {
+            'fields': ('billing_street_name', 'billing_street_number', 'billing_town_or_city',
+                    'billing_county', 'billing_postcode', 'billing_country')
         }),
         ('Permissions', {
             'fields': (
@@ -34,9 +40,15 @@ class AccountsAdmin(UserAdmin):
             'fields': ('username', 'password1', 'password2')
         }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email','phone_number',
-                       'street_name', 'street_number', 'town_or_city', 
-                       'county', 'postcode', 'country')
+            'fields': ('first_name', 'last_name', 'email','phone_number')
+        }),
+        ('Shipping info', {
+            'fields': ('shipping_street_name', 'shipping_street_number', 'shipping_town_or_city', 
+                       'shipping_county', 'shipping_postcode', 'shipping_country')
+        }),
+        ('Billing info', {
+            'fields': ('billing_street_name', 'billing_street_number', 'billing_town_or_city',
+                    'billing_county', 'billing_postcode', 'billing_country')
         }),
         ('Permissions', {
             'fields': (
@@ -49,4 +61,5 @@ class AccountsAdmin(UserAdmin):
         })
     )
 
-admin.site.register(Account, AccountsAdmin)
+
+admin.site.register(UserAccount, UserAccountsAdmin)

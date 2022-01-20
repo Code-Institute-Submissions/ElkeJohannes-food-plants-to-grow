@@ -9,7 +9,6 @@ from django.conf import settings
 
 from .models import Order, OrderLineItem
 from plants.models import Plant
-from accounts.models import Account
 
 import json
 import time

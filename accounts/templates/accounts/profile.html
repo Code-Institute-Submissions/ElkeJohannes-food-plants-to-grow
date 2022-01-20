@@ -2,5 +2,39 @@
 {% load static %}
 
 {% block bodyMain %}
-<p>Welcome to your profile</p>
+<div class="container justify-content-center">
+    <h1 class="text-center">Welcome to your profile</h1>
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-9 col-lg-7 col-xl-5">
+            <form action="{% url 'profile' %}" method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Personal information</legend>
+                    {{ user_account_form.full_name | as_crispy_field }}
+                    {{ user_account_form.phone_number | as_crispy_field }}
+                    {{ user_account_form.email | as_crispy_field }}
+                </fieldset>
+                <fieldset>
+                    <legend>Shipping information</legend>
+                    {{ user_account_form.shipping_street_name | as_crispy_field }}
+                    {{ user_account_form.shipping_street_number | as_crispy_field }}
+                    {{ user_account_form.shipping_town_or_city | as_crispy_field }}
+                    {{ user_account_form.shipping_county | as_crispy_field }}
+                    {{ user_account_form.shipping_postcode | as_crispy_field }}
+                    {{ user_account_form.shipping_country | as_crispy_field }}
+                </fieldset>
+                <fieldset>
+                    <legend>Billing information</legend>
+                    {{ user_account_form.billing_street_name | as_crispy_field }}
+                    {{ user_account_form.billing_street_number | as_crispy_field }}
+                    {{ user_account_form.billing_town_or_city | as_crispy_field }}
+                    {{ user_account_form.billing_county | as_crispy_field }}
+                    {{ user_account_form.billing_postcode | as_crispy_field }}
+                    {{ user_account_form.billing_country | as_crispy_field }}
+                </fieldset>
+                <button type="submit" id="submit-button" class="btn btn-success mt-2">Save Profile</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
