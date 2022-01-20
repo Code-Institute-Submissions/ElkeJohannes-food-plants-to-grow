@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
     'crispy_forms',
     'storages',
     'home',
@@ -216,7 +215,7 @@ if 'USE_AWS' in os.environ:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.Account'
+AUTH_USER_MODEL = 'accounts.UserAccount'
 
 # Stripe
 STRIPE_CURRENCY = 'eur'
