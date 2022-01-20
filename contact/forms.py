@@ -12,5 +12,5 @@ class ContactForm(forms.Form):
                                    attrs={'placeholder': '+31612345678'}),
                                    required=False, label=False)
     question = forms.CharField(widget=forms.Textarea(
-                               attrs={'placeholder': 'Question: why is this the best site ever? *'}),
+                               attrs={'placeholder': 'Your question *'}),
                                label=False)

@@ -1,7 +1,39 @@
+:root{
+    --green: #198754;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-bg-opacity: 0.8;
+}
+
 .hidden{
     display: none !important;
 }
 
 .quantity-input {
     width: 2.5rem;
+}
+
+a{
+    color: var(--green);
+    font-weight: bolder;
+}
+a:hover{
+    color: #2cc52c;
+}
+
+input, textarea, select, button {
+    margin: 0.25em;
+}
+
+#id_shipping_country,
+#id_billing_country{
+    padding: 8px 12px;
+}
+
+body{
+    background-image: url('/media/Blue-Beech-leaf-3.jpg');
+}
+
+.main-container{
+    height: 100vh;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
