@@ -48,7 +48,7 @@
         <div class="row m-2">
             <div class="col-2 text-center">
                 {% if plant.image_url %}
-                <img class="img-cart mt-1 mb-3 ms-2" src={{ plant.Image_url }} alt="Image of {{ plant.common_name }}" />
+                <img class="img-cart mt-1 mb-3 ms-2" src="{{ plant.image_url }}" alt="Image of {{ plant.common_name }}" />
                 {% else %}
                 <img class="img-cart mt-1 mb-3 ms-2" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
                 {% endif %}

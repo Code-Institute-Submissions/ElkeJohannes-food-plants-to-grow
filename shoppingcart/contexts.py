@@ -15,7 +15,7 @@ def cart_contents(request):
             'common_name': plant.common_name,
             'price': plant.price,
             'amount': value,
-            'image': plant.image_url,
+            'image_url': plant.image_url,
             'stock': plant.stock,
         })
         total_price += value * round(plant.price * 100)
