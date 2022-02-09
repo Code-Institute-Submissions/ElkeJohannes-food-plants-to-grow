@@ -8,11 +8,11 @@ class UserAccountForm(forms.ModelForm):
         model = UserAccount
         fields = (
             'full_name', 'email', 'phone_number',
-            'shipping_street_name', 'shipping_street_number', 
+            'shipping_street_name', 'shipping_street_number',
             'shipping_town_or_city', 'shipping_county', 'shipping_postcode',
             'shipping_country', 'billing_street_name', 'billing_street_number',
-            'billing_town_or_city', 'billing_county', 'billing_postcode', 'billing_country'
-        )
+            'billing_town_or_city', 'billing_county', 'billing_postcode',
+            'billing_country')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -34,11 +34,10 @@ class UserAccountForm(forms.ModelForm):
 
         self.fields['phone_number'].widget.attrs['autofocus'] = True
         for field in self.fields:
-            if field != 'shipping_country':
-                if field != 'billing_country' :
-                    if self.fields[field].required:
-                        placeholder = f'{placeholders[field]} *'
-                    else:
-                        placeholder = placeholders[field]
-                    self.fields[field].widget.attrs['placeholder'] = placeholder
+            if field != 'shipping_country' and field != 'billing_country':
+                if self.fields[field].required:
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False

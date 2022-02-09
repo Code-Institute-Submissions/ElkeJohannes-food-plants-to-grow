@@ -20,23 +20,27 @@ class OrderAdmin(admin.ModelAdmin):
                        'total_cost')
         }),
         ('Shipping info', {
-            'fields': ('shipping_street_name', 'shipping_street_number', 'shipping_town_or_city', 
-                       'shipping_county', 'shipping_postcode', 'shipping_country')
+            'fields': ('shipping_street_name', 'shipping_street_number',
+                       'shipping_town_or_city', 'shipping_county',
+                       'shipping_postcode', 'shipping_country')
         }),
         ('Billing info', {
-            'fields': ('billing_street_name', 'billing_street_number', 'billing_town_or_city',
-                    'billing_county', 'billing_postcode', 'billing_country')
+            'fields': ('billing_street_name', 'billing_street_number',
+                       'billing_town_or_city', 'billing_county',
+                       'billing_postcode', 'billing_country')
         })
     )
 
     add_fieldsets = (
         ('Shipping info', {
-            'fields': ('shipping_street_name', 'shipping_street_number', 'shipping_town_or_city', 
-                       'shipping_county', 'shipping_postcode', 'shipping_country')
+            'fields': ('shipping_street_name', 'shipping_street_number',
+                       'shipping_town_or_city', 'shipping_county',
+                       'shipping_postcode', 'shipping_country')
         }),
         ('Billing info', {
-            'fields': ('billing_street_name', 'billing_street_number', 'billing_town_or_city',
-                    'billing_county', 'billing_postcode', 'billing_country')
+            'fields': ('billing_street_name', 'billing_street_number',
+                       'billing_town_or_city', 'billing_county',
+                       'billing_postcode', 'billing_country')
         })
     )
 

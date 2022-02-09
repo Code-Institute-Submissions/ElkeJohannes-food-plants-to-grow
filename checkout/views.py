@@ -47,7 +47,8 @@ def checkout(request):
                 if request.get('save_info'):
                     current_user = request.user
                     user_profile = UserAccount.objects.get(pk=current_user.id)
-                    user_account_form = UserAccountForm(request.POST, instance=user_profile)
+                    user_account_form = UserAccountForm(request.POST,
+                                                        instance=user_profile)
                     user_account_form.save()
 
             order.save()

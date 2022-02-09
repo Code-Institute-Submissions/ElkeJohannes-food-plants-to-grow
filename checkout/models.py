@@ -1,6 +1,5 @@
 import uuid
 from decimal import Decimal
-
 from django.db import models
 from django.db.models import Sum
 from django.db.models.deletion import CASCADE, SET_NULL
@@ -8,28 +7,41 @@ from plants.models import Plant
 from accounts.models import UserAccount
 from django_countries.fields import CountryField
 
+
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user = models.ForeignKey(UserAccount, null=True, on_delete=SET_NULL)
     date = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=80, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
-    shipping_street_name = models.CharField(max_length=80, null=False, blank=False)
-    shipping_street_number = models.CharField(max_length=80, null=False, blank=False)
-    shipping_town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    shipping_street_name = models.CharField(max_length=80, null=False,
+                                            blank=False)
+    shipping_street_number = models.CharField(max_length=80, null=False,
+                                              blank=False)
+    shipping_town_or_city = models.CharField(max_length=40, null=False,
+                                             blank=False)
     shipping_county = models.CharField(max_length=80, null=True, blank=True)
     shipping_postcode = models.CharField(max_length=20, null=True, blank=True)
-    shipping_country = CountryField(blank_label='Country', null=False, blank=False)
-    billing_street_name = models.CharField(max_length=80, null=False, blank=False)
-    billing_street_number = models.CharField(max_length=80, null=False, blank=False)
-    billing_town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    shipping_country = CountryField(blank_label='Country', null=False,
+                                    blank=False)
+    billing_street_name = models.CharField(max_length=80, null=False,
+                                           blank=False)
+    billing_street_number = models.CharField(max_length=80, null=False,
+                                             blank=False)
+    billing_town_or_city = models.CharField(max_length=40, null=False,
+                                            blank=False)
     billing_county = models.CharField(max_length=80, null=True, blank=True)
     billing_postcode = models.CharField(max_length=20, null=True, blank=True)
-    billing_country = CountryField(blank_label='Country', null=False, blank=False)
-    shipping_fee = models.DecimalField(decimal_places=2, max_digits=6, default=Decimal(15.75))
-    order_total = models.DecimalField(decimal_places=2, max_digits=10, default=Decimal(00.00))
-    total_cost = models.DecimalField(decimal_places=2, max_digits=10, default=Decimal(00.00))
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+    billing_country = CountryField(blank_label='Country', null=False,
+                                   blank=False)
+    shipping_fee = models.DecimalField(decimal_places=2, max_digits=6,
+                                       default=Decimal(15.75))
+    order_total = models.DecimalField(decimal_places=2, max_digits=10,
+                                      default=Decimal(00.00))
+    total_cost = models.DecimalField(decimal_places=2, max_digits=10,
+                                     default=Decimal(00.00))
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False,
+                                  default='')
 
     def _generate_order_number(self):
         """ Generate a unique order number """
@@ -41,9 +53,10 @@ class Order(models.Model):
         Update the total cost everytime a line_item is added
         """
 
-        self.order_total = self.line_items.aggregate(Sum('line_total'))['line_total__sum']
+        self.order_total = self.line_items.aggregate(Sum('line_total')
+                                                     ['line_total__sum'])
         self.total_cost = self.order_total + self.shipping_fee
-        
+
         self.save()
 
     def save(self, *args, **kwargs):
@@ -55,16 +68,18 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
-    
+
     def __str__(self) -> str:
         return self.order_number
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=CASCADE, related_name='line_items')
+    order = models.ForeignKey(Order, null=False, blank=False,
+                              on_delete=CASCADE, related_name='line_items')
     plant = models.ForeignKey(Plant, null=True, blank=False, on_delete=CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=1)
-    line_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    line_total = models.DecimalField(max_digits=6, decimal_places=2,
+                                     null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """
@@ -75,4 +90,6 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return f'Plant: {self.plant.common_name} on order: {self.order.order_number}'
+        common_name = self.plant.common_name
+        order_number = self.order.order_number
+        return f'Plant: {common_name} on order: {order_number}'
