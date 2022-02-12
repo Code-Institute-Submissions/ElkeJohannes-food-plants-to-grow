@@ -76,5 +76,7 @@ For testing, 2 device types are defined:
 
 ## &rarr; **Bugs**
 1. Plant image doesn't show up when viewing the cart <br>
-   <i>The image is visible when viewing viewing it from the plants pages.</i> 
+   <i>The image is visible when viewing viewing it from the plants pages.</i>
+2. When logged in, the user is unable to perform a checkout <br>
+  <i>The site will return an error about the 'save info' checkbox</i>
 ---
