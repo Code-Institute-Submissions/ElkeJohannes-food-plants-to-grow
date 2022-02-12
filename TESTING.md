@@ -8,6 +8,7 @@
   - [User story tests](#user-story-tests)
   - [Manual testing script](#manual-testing-script)
   - [Feature test scripts](#feature-test-scripts)
+  - [Known issues](#known-issues)
   - [Bugs](#bugs)
 </details>
 
@@ -64,6 +65,13 @@ For testing, 2 device types are defined:
 - Action 1
 - Action 2
 
+---
+
+## &rarr; **Known issues**
+- There are a number of PEP8 compliancy errors concerning the length of some lines. So far I've been unable to make these shorter. This will be done in a future release. The files concerned are:
+  - checkout/webhooks_handler.py
+  - checkout/webhooks.py
+  - checkout/models.py
 ---
 
 ## &rarr; **Bugs**

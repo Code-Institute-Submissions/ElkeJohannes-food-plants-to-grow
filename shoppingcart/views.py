@@ -10,8 +10,9 @@ def view_cart(request):
     if not cart:
         messages.warning(request, 'Your cart is empty!')
         return redirect(reverse('all_plants'))
-    
+
     return render(request, 'shoppingcart/view_cart.html')
+
 
 def add_to_cart(request, plant_id):
     """ Add an item to the cart """
@@ -20,7 +21,7 @@ def add_to_cart(request, plant_id):
     cart = request.session.get('cart', {})
     # If the plant is already in the cart, update the quantity
     if plant_id in list(cart.keys()):
-        cart[plant_id] += quantity       
+        cart[plant_id] += quantity
     else:
         cart[plant_id] = quantity
 
@@ -32,7 +33,7 @@ def add_to_cart(request, plant_id):
 
 def update_cart(request):
     """ Update the number of items in the cart """
-    
+
     cart = request.session.get('cart', {})
     for plant_id, quantity in cart.items():
         quantity = int(request.POST.get('quantity_' + str(plant_id)))

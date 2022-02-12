@@ -18,7 +18,7 @@ def contact_form(request):
             mail_body = f'From: {sender} \nQuestion: {question}'
             send_mail(
                 "New message from Contactform",
-                mail_body,                
+                mail_body,
                 settings.EMAIL_HOST_USER,
                 [settings.EMAIL_HOST_USER],
                 fail_silently=False
@@ -30,5 +30,5 @@ def contact_form(request):
         context = {
             'contact_form': contact_form,
         }
-        
+
         return render(request, 'contact/contact.html', context)

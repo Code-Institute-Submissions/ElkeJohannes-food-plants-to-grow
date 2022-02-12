@@ -7,7 +7,6 @@ class SuggestionForm(forms.ModelForm):
         model = Suggestion
         fields = ('common_name', 'botanical_name', 'argument')
 
-
     def __init__(self, *args, **kwargs):
         """
         Add placeholders and classes, remove auto-generated

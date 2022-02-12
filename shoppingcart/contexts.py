@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from plants.models import Plant
 from checkout.models import Order
 
+
 def cart_contents(request):
     cart_items = []
     cart = request.session.get('cart', {})
