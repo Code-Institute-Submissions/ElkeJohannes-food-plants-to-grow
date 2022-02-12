@@ -69,9 +69,18 @@
                     </div>
                 </div>
             </nav>
+            <hr class="nav-hr">
+            <!-- Django messages -->
+            {% if messages %}
+            <ul class="messages m-auto text-center mb-3">
+                {% for message in messages %}
+                <li{% if message.tags %} class="bg-{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
         </header>
 
-        
+
         {% block bodyMain %}
         {% endblock %}
 

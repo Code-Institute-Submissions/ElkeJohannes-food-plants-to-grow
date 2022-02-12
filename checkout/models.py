@@ -52,11 +52,9 @@ class Order(models.Model):
         """
         Update the total cost everytime a line_item is added
         """
-
-        self.order_total = self.line_items.aggregate(Sum('line_total')
-                                                     ['line_total__sum'])
+        
+        self.order_total = self.line_items.aggregate(Sum('line_total'))['line_total__sum']
         self.total_cost = self.order_total + self.shipping_fee
-
         self.save()
 
     def save(self, *args, **kwargs):

@@ -7,6 +7,7 @@ from accounts.models import UserAccount
 from accounts.forms import UserAccountForm
 from .models import OrderLineItem
 from shoppingcart.contexts import cart_contents
+from django.contrib import messages
 
 import stripe
 import json
@@ -30,9 +31,6 @@ def checkout(request):
     cart = request.session.get('cart', {})
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
-
-    if not cart:
-        return redirect(reverse('all_plants'))
 
     if request.method == "POST":
         order_form = OrderForm(request.POST)
@@ -67,6 +65,7 @@ def checkout(request):
 
         # Empty the shoppingcart and redirect back to home
         request.session['cart'] = {}
+        messages.success(request, 'Order succesfull! Congratulations!')
         return redirect(reverse('home'))
     else:
         # Prepare stripe payment intent

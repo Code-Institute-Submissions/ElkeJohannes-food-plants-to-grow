@@ -37,3 +37,19 @@ body{
     min-height: 100vh;
     background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
 }
+
+.nav-hr{
+    margin:0rem 0rem 1rem 0rem;
+}
+
+.messages{
+    list-style: none;
+    max-width: fit-content;
+    padding-inline-start: 0px;
+}
+
+.messages li{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: bolder;
+}
