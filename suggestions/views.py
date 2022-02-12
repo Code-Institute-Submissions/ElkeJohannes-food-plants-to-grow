@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Suggestion
 from .forms import SuggestionForm
+from django.contrib import messages
 
 
 def view_suggestions(request):
@@ -47,11 +48,12 @@ def upvote_suggestion(request, suggestion_id):
     suggestion = get_object_or_404(Suggestion, pk=suggestion_id)
     user = request.user
     # check if user is in list of upvoters
-    if user not in suggestion.upvoters.all():
-        print("user is not in the list")
-        print(user)
-        suggestion.upvoters.add(user)
+    upvoters = suggestion.upvoters_as_list()
+    if str(user) not in upvoters:
+        suggestion.upvoters = str(suggestion.upvoters) + f';{user}'
         suggestion.number_of_upvotes += 1
         suggestion.save()
+    else:
+        messages.warning(request, 'You have already voted for this plant')
 
     return redirect(reverse('view_suggestions'))

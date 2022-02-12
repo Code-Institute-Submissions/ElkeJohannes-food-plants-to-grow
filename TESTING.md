@@ -79,4 +79,6 @@ For testing, 2 device types are defined:
    <i>The image is visible when viewing viewing it from the plants pages.</i>
 2. When logged in, the user is unable to perform a checkout <br>
   <i>The site will return an error about the 'save info' checkbox</i>
+3. Suggestions cannot be upvoted<br>
+  <i>When you click on the upvote button, a server error is generated</i>
 ---
