@@ -1,7 +1,4 @@
-from tkinter.tix import Tree
 from django.db import models
-from accounts.models import UserAccount
-from django.db.models.deletion import SET_NULL
 
 
 class Suggestion(models.Model):
