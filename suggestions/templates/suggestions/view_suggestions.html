@@ -1,37 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block customHead %}
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{% static 'suggestions/css/suggestions.css' %}">
+{% endblock %}
+
 {% block bodyMain %}
-<div class="container">
-    <div class="row text-center">
-        <div class="col">
-            <h1>Welcome to the suggestions page</h1>
-            <a href="{% url 'add_suggestion' %}">Share your plant suggestion!</a>
-        </div>
+<div class="row text-center">
+    <div class="col">
+        <h1>Welcome to the suggestions page</h1>
+        <a href="{% url 'add_suggestion' %}">Share your plant suggestion!</a>
     </div>
-    <div class="row mt-4 justify-content-center">
-        <div class="col-8 text-start">
-            {% for suggestion in suggestions %}
-                <div class="row m-2">
-                    <div class="col-3">
-                        {{ suggestion.common_name }}
-                    </div>
-                    <div class="col-3">
-                        {{ suggestion.botanical_name }}
-                    </div>
-                    <div class="col-5">
-                        {{ suggestion.argument }}
-                    </div>
-                    <div class="col-1">
-                        {{ suggestion.number_of_upvotes }}
-                        <a href="{% url 'upvote_suggestion' suggestion.id %}">
-                            <i class="fas fa-arrow-up"></i>
-                        </a>
-                    </div>
-                </div>
-            {% endfor %}
+</div>
+<div class="row mt-4 justify-content-center">
+    <div class="col text-start">
+        {% for suggestion in suggestions %}
+        <div class="row suggestions-row mt-2 mb-2">
+            <div class="col-3">
+                {{ suggestion.common_name }}
+            </div>
+            <div class="col-3">
+                {{ suggestion.botanical_name }}
+            </div>
+            <div class="col-5">
+                {{ suggestion.argument }}
+            </div>
+            <div class="col-1">
+                {{ suggestion.number_of_upvotes }}
+                <a href="{% url 'upvote_suggestion' suggestion.id %}">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
         </div>
+        {% endfor %}
     </div>
-</div>    
+</div>
+
 
 {% endblock %}

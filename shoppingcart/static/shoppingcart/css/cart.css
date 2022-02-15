@@ -5,12 +5,29 @@
     max-width: 100%;
 }
 
+.shoppingcart .row .col-1,
 .shoppingcart .row .col-2,
 .shoppingcart .row .col-3,
-.shoppingcart .row .col-11{
+.shoppingcart .row .col{
     border-bottom: 1px solid grey;
 }
 
 .checkout {
     border-bottom: 0px !important;
+    padding: 0px;
+}
+
+.subtotal-row{
+    border-bottom: 0px !important;
+}
+
+.subtotal-col{
+    border-bottom: 0px !important;
+    
+}
+
+.subtotal-col div{
+    border-bottom: 1px solid grey;
+    width: fit-content;
+    margin-left: auto;
 }

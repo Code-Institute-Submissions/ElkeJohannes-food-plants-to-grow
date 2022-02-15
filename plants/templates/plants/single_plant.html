@@ -8,7 +8,7 @@
 
 {% block bodyMain %}
 <section class="row mt-5 justify-content-center">
-    <div class="col-8">
+    <div class="col-8 col-lg-6">
         <!-- Plant info -->
         <h4>{{plant.common_name}}</h4>
         <h6>{{plant.botanical_name}}</h6>
@@ -57,7 +57,7 @@
             </div>
         </form>
     </div>
-    <div class="col-4 text-center">
+    <div class="col text-center">
         <!-- Plant image, fill with placeholder if not present -->
         {% if plant.image_url %}
         <img class="plant_image" src="{{ plant.image_url }}" alt="Image of {{ plant.common_name }}" />
