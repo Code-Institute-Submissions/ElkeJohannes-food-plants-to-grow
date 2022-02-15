@@ -37,7 +37,7 @@
 <div class="row justify-content-center">
     <form method="post" action="{% url 'update_cart' %}" class="col col-sm-11 col-xl-10 shoppingcart">
         {% csrf_token %}
-        <div class="row mt-5">
+        <div class="row mt-5 row-underline">
             <div class="col">
                 <h5>
                     Shoppingcart contents:
@@ -45,28 +45,28 @@
             </div>
         </div>
         {% for plant in cart_items %}
-        <div class="row">
+        <div class="row row-underline">
             <!-- Plant image -->
-            <div class="col-3 text-center">
+            <div class="col-12 col-sm-3 text-center">
                 {% if plant.image_url %}
-                <img class="img-cart mt-1 mb-3 ms-2" src="{{ plant.image_url }}"
+                <img class="img-cart m-auto mt-1 mb-1" src="{{ plant.image_url }}"
                     alt="Image of {{ plant.common_name }}" />
                 {% else %}
                 <img class="img-cart mt-1 mb-3 ms-2" src="{{ MEDIA_URL }}noimage.png" alt="No image uploaded" />
                 {% endif %}
             </div>
             <!-- Plant common name -->
-            <div class="col-3 mt-2">
+            <div class="col-12 col-sm-3 mt-2">
                 <a href="{% url 'single_plant' plant.id %}">
                     {{plant.common_name}}
                 </a>
             </div>
             <!-- Price -->
-            <div class="col-1 mt-2">
+            <div class="col-3 col-sm-1 mt-2">
                 Price: <br>€ <span id="price_{{plant.id}}">{{plant.price}}</span>
             </div>
             <!-- Amount -->
-            <div class="col-3 mt-2 text-center">
+            <div class="col-6 col-sm-3 mt-2 text-center">
                 <div>Amount:</div>
                 <div class="input-group m-1 justify-content-center">
                     <a class="btn btn-black decrement-quantity input-group-prepend">
@@ -92,7 +92,7 @@
                 </div>
             </div>
             <!-- Line total -->
-            <div class="col-2 mt-2 text-end">
+            <div class="col-3 col-sm-2 mt-2 text-end">
                 Line total: <br>€ <span class="line-total" id="line-total_{{plant.id}}">00,00</span>
             </div>
         </div>

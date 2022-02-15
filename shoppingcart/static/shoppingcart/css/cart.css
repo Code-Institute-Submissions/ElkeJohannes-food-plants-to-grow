@@ -5,10 +5,7 @@
     max-width: 100%;
 }
 
-.shoppingcart .row .col-1,
-.shoppingcart .row .col-2,
-.shoppingcart .row .col-3,
-.shoppingcart .row .col{
+.row-underline{
     border-bottom: 1px solid grey;
 }
 
