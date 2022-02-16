@@ -10,6 +10,8 @@ Food plants to Grow is a website dedicated to providing users with the opportuni
 
 </div>
 
+Note that this is a showcase website. The plants advertised will not actually be delivered. 
+
 ---
 
 ## Table of contents
@@ -85,12 +87,22 @@ A bright green image featuring leaves from the Beech tree is visible through a t
 #### **<ins>Existing features</ins>**
 |#|Name|Description|
 |-|-|-|
+|1|Register|Create a personal account to contain your order history and your address information|
+|2|Login|Login to enable additional features|
+|3|Search for a plant|Users can search for a common name, botanical name and a description|
+|4|Filter by category|users can select a category to view only the plants that fall under that category|
+|5|Change amount in shoppingcart|Users can change the amount of plants in their shoppingcart or remove plants altogether|
+|6|Make a purchase|Users can perform a checkout, and purchase plants|
+|7|Edit address information|After logging in, users can view and edit their address information|
+|8|Make a plant suggestion|After logging in, users can make a new plant suggestion, or upvote an existing one|
 
 
 #### **<ins>Future features</ins>**
 |#|Name|Description|
 |-|-|-|
-
+|1|Order history|Enabling users to view their order history after logging in|
+|2|Dynamic search|This will display search results while typing instead of after pressing the search button|
+|3|Captcha on contactform|This denies malicious users to send spam from the website|
 
 ---
 
@@ -115,17 +127,44 @@ A bright green image featuring leaves from the Beech tree is visible through a t
   * Used to create a custom favicon.
 - Various python modules, entire list visible in [Requirements file](https://github.com/ElkeJohannes/food-plants-to-grow/blob/main/requirements.txt)
 
-
 ---
 
 ## &rarr; **Deployment** 
 ### **<ins>Deployment to Heroku</ins>**
-1. Created the project on Github. Git and Github were also used for the version control.
-2. Created a new, empty app on Heroku
-3. Linked the Github repository to the app
-4. Created the Config Vars on the settings page of the app. In order to make the application work for yourself, ensure you create the following keys here:
-   - SECRET_KEY (needed for Flash messages)
-5. From the deploy page, ran a manual deploy, after which, automatic deployment was enabled for the 'main' branch
+1. Clone the project on Github.
+2. Create a new, empty app on Heroku
+3. Link the cloned Github repository to the Heroku app
+4. Add a Postgress database to your Heroku app
+5. Create the Config Vars on the settings page of the app. In order to make the application work, ensure you create the following keys here:
+   - AWS_ACCESS_KEY_ID 
+      - <i>From AWS, you can find this in your bucket</i>
+   - AWS_SECRET_ACCESS_KEY
+      - <i>From AWS, visible when creating a user</i>
+   - DATABASE_URL
+      - <i>Automatically created after adding a postgress DB</i>
+   - EMAIL_HOST_PASSWORD
+      - <i>Password used for sending emails</i>
+   - EMAIL_HOST_USER
+      - <i>User used for sending emails</i>
+   - SECRET_KEY
+      - <i>Django secret key, randomly generated</i>
+   - STRIPE_PUBLIC_KEY
+      - <i>From Stripe. One half of a keypair</i>
+   - STRIPE_SECRET_KEY
+      - <i>From Stripe. The other half of the keypair</i>
+   - STRIPE_WH_SECRET
+      - <i>From Stripe. Used for webhooks</i>
+   - USE_AWS
+      - <i>Wether to use AWS as storage for the static files</i>
+6. Create or log into an AWS account, and create a new bucket. This will serve as storage for your static files. 
+7. Set the access (viewing) of the AWS bucket to public.
+8. Create a user that will be used to manage the files
+9. From the deploy page, run a manual deploy. 
+10. If the build is succesfull, you can enable automatic deployment for the cloned Github repository.
+11. Create or log into a Stripe account. 
+12. Create a new webhook, using the URL from your deployed website
+
+You should now have a functioning website. If the build doesn't succeed or the website generates an error during loading, ensure all keys are added correctly. 
 
 ### **<ins>Forking this repository</ins>**
 1. Login to [GitHub](https://github.com)
@@ -143,6 +182,7 @@ A bright green image featuring leaves from the Beech tree is visible through a t
 - All plant images were also taken from: [foodforestnursery.com](https://foodforestnursery.com/)
 
 ### **<ins>Acknowledgements</ins>** 
+- Thanks to my mentor Nishant, for the support, knowhow and general advice on how to make a decent website.
 - Shop template taken from [Startbootstrap.com](https://startbootstrap.com/template/shop-homepage)
 - Color sheme from [Colorhunt.co](https://colorhunt.co/palette/125c133e7c17f4a442e8e1d9)
 - Tutorial for adding extra fields to users [cpadiernos](https://cpadiernos.github.io/how-to-add-fields-to-the-user-model-in-django.html)
