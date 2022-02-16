@@ -6,9 +6,8 @@
 **<details><summary>Table of contents</summary>**
   - [Code validation](#code-validation)
   - [User story tests](#user-story-tests)
-  - [Manual testing script](#manual-testing-script)
   - [Feature test scripts](#feature-test-scripts)
-  - [Known issues](#known-issues)
+  - [Known issues and disclaimers](#known-issues-and-disclaimers)
   - [Bugs](#bugs)
 </details>
 
@@ -21,7 +20,7 @@
 - Tested for valid CSS code using [Jigsaw validator](https://jigsaw.w3.org/css-validator/)<br>
 <img src="media/readme_files/css-validation.png" width="400px" height="150px" alt="Validation tests - CSS"><br>
 
-- Continuous validation of python code using installed plugin [Pylance](https://github.com/microsoft/pylance-release) 
+- Continuous validation of python code using installed plugin [Pylance](https://github.com/microsoft/pylance-release). Additionally the website [pep8online](http://pep8online.com/) was used to check each python code file.
 
 ---
 
@@ -44,14 +43,6 @@
 
 ---
 
-## &rarr; **Manual testing script**
-In all below testing actions, it is assumed you have opened the website on **any** device. 
-
-|Test name|Actions|
-|-|-|
-|<ins>title</ins>|Action <br> Action 2|
-
----
 
 ## &rarr; **Feature test scripts**
 For testing, 2 device types are defined:
@@ -60,18 +51,80 @@ For testing, 2 device types are defined:
 - Mobile+
     * Any device with a horizontal screen width **larger** then 567px
 
-|1|Title|
+|1|Register|
 |-|-|
-- Action 1
-- Action 2
+- Click on the 'Register' button in the top menu
+- Fill in the fields in the form and click 'Sign Up'
+- Confirm a message appears confirming you have signed up, and saying there was an email sent to you
+- Confirm you received an email
+- Click on the link in the email
+- Confirm you can login to the site (see steps below)
+
+|2|Login|
+|-|-|
+- Click on the 'Login' button in the top menu
+- Fill in your username and password and click 'Sign In'
+- Confirm you are taken to the home screen, and a message appears saying you are logged in succesfully
+
+|3|Search for a plant|
+|-|-|
+- Click on the 'Plants' button in the top menu
+- Click on the input field next to the magnifying glass where it says 'Search...'
+- Enter a search phrase and press enter or click on the magnifying glass
+- Confirm plants containing your searchphrase are showed (provided they exist on the site)
+
+|4|Filter by category|
+|-|-|
+- Click on the 'Plants' button in the top menu
+- Click on the 'Categories' button to the far right of the search area
+- Click on any category
+- Confirm only the plants from that category are shown
+
+|5|Change amount in shoppingcart|
+|-|-|
+- Add one or more plants to your shoppingcart
+- Click on the shoppingcart icon on the top right
+- Click on either the plus or minus sign in a line
+- Confirm the amount is updated, as are the line total and subtotal
+
+|6|Make a purchase|
+|-|-|
+- Add one or more plants to your shoppingcart
+- Click on the shoppingcart icon on the top right
+- Click on the 'Checkout' button on the bottom right
+- Fill in the Personal, Shipping and Billing information (dummy, senseless information may be used)
+- Fill in 4242 4242 4242 4242 as the card number, with 04 / 24 as the expiry date, 242 as the CVC code and 42424 as the ZIP code
+- Click 'Confirm purchase'
+- Confirm the button is disabled
+- Confirm that after a few seconds you are taken to the home screen, and a green message is displayed confirming a succesfull payment
+
+|7|Edit address information|
+|-|-|
+- Log into the website
+- Click on the 'Profile' button in the top menu
+- Edit any field in the form
+- Click on the 'Save Profile' button at the bottom of the form
+- Confirm a green message at the top is shown confirming the profile was updated
+- Reload the page, or proceed to the checkout page
+- Confirm the form now contains the updated values
+
+|8|Make a plant suggestion|
+|-|-|
+- Log into the website
+- Click on the 'Suggestions' button in the top menu
+- Click on 'Share your plant suggestion!'
+- Fill in the required fields, and click on 'Submit'
+- Confirm a message is displayed confirming a succesfull suggestion was made
+- Confirm the suggestion is now listed on the 'Suggestions' page
 
 ---
 
-## &rarr; **Known issues**
+## &rarr; **Known issues and disclaimers**
 - There are a number of PEP8 compliancy errors concerning the length of some lines. So far I've been unable to make these shorter. This will be done in a future release. The files concerned are:
   - checkout/webhooks_handler.py
   - checkout/webhooks.py
   - checkout/models.py
+- The code in the models for accounts and checkout both contain a bit of the same code, namely the address fields. This is intentional because I want to be able to save address info with users as well as with orders. I have plans to change this into a seperate class to be reused in both models in a future version. 
 ---
 
 ## &rarr; **Bugs**
