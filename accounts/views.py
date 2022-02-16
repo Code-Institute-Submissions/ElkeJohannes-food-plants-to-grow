@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .forms import UserAccountForm
 from .models import UserAccount
+from django.contrib import messages
 
 
 def profile(request):
@@ -15,7 +16,10 @@ def profile(request):
         user_account_form = UserAccountForm(request.POST,
                                             instance=user_profile)
         if user_account_form.is_valid():
+            messages.success(request, 'Profile succesfully updated!')
             user_account_form.save()
+        else:
+            messages.warning(request, 'Profile failed to save, please try again.')
         return redirect(reverse('profile'))
     else:
         user_account_form = UserAccountForm(instance=request.user)

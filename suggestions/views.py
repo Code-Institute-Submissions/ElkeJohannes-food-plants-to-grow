@@ -1,3 +1,4 @@
+from email import message
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Suggestion
@@ -28,6 +29,7 @@ def add_suggestion(request):
         suggestion_form = SuggestionForm(request.POST)
         if suggestion_form.is_valid():
             suggestion_form.save()
+            messages.success(request, 'Successfully added suggestion!')
             return redirect(reverse('view_suggestions'))
     else:
         suggestion_form = SuggestionForm()
@@ -52,6 +54,7 @@ def upvote_suggestion(request, suggestion_id):
     if str(user) not in upvoters:
         suggestion.upvoters = str(suggestion.upvoters) + f';{user}'
         suggestion.number_of_upvotes += 1
+        messages.success(request, f'Upvoted: {suggestion.common_name}')
         suggestion.save()
     else:
         messages.warning(request, 'You have already voted for this plant')

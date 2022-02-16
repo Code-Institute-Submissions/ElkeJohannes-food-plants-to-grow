@@ -1,6 +1,4 @@
 from django.shortcuts import redirect, render, reverse
-from django.shortcuts import get_object_or_404
-from plants.models import Plant
 from django.contrib import messages
 
 
