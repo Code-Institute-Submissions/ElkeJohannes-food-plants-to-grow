@@ -14,7 +14,7 @@
     </div>
 </div>
 <div class="row mt-4 justify-content-center">
-    <div class="col text-start">
+    <div class="col text-start suggestions">
         {% for suggestion in suggestions %}
         <div class="row suggestions-row mt-2 mb-2">
             <div class="col-3">
@@ -31,6 +31,17 @@
                 <a href="{% url 'upvote_suggestion' suggestion.id %}">
                     <i class="fas fa-arrow-up"></i>
                 </a>
+                <!-- Logged in users can edit/delete their own suggestions -->
+                {% if request.user.is_authenticated %}
+                    {% if request.user == suggestion.creator %}
+                        <a href="{% url 'edit_suggestion' suggestion.id %}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'delete_suggestion' suggestion.id %}">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
         {% endfor %}
