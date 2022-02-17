@@ -65,6 +65,7 @@ def checkout(request):
         # Empty the shoppingcart and redirect back to home
         request.session['cart'] = {}
         messages.success(request, 'Order succesfull! Congratulations!')
+        messages.success(request, 'You can find a confirmation in your email inbox')
         return redirect(reverse('home'))
     else:
         # Prepare stripe payment intent
